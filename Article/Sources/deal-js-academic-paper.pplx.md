@@ -148,7 +148,7 @@ Table 3. Core language mechanisms and representative syntax.
 
 | Mechanism | Representative syntax | Computational role |
 |---|---|---|
-| Declaration | `ASSUME CONST threshold IS 10;` | Bind a constant; related forms select `let` or `var` |
+| Declaration | `CONSIDER CONST threshold IS 10;` | Bind a constant; related forms select `let` or `var` |
 | Branching | `IF condition, procedure; ELSE procedure;` | Make a decision explicit |
 | Iteration | `FOR EACH item OF items, procedure;` | Iterate over collection values; `IN` denotes a different operation |
 | Conditional repetition | `WHILE condition, procedure;` | Repeat while a condition holds; ordinary JavaScript `do ... while` remains available |
@@ -173,13 +173,13 @@ Readable operators include `BE` for assignment, `IS` for equality, `EQUALS` for 
 
 ### Explicit declarations and ordinary source
 
-The `ASSUME` construction makes binding intent explicit: `CONST` declares a constant, `VAR` selects a variable declaration, and `LET` or an omitted modifier selects a lexical binding ([DEAL.JS documentation](https://github.com/DEAL-X/DEAL-JS) [6]). Listing 1 pairs the DEAL forms with their JavaScript equivalents, illustrating how readable declarations retain familiar target-language distinctions.
+The `CONSIDER` construction makes binding intent explicit: `CONST` declares a constant, `VAR` selects a variable declaration, and `LET` or an omitted modifier selects a lexical binding ([DEAL.JS documentation](https://github.com/DEAL-X/DEAL-JS) [6]). Listing 1 pairs the DEAL forms with their JavaScript equivalents, illustrating how readable declarations retain familiar target-language distinctions.
 
 ```text
-ASSUME CONST threshold IS 10;
-ASSUME VAR attempts IS EQUAL 0;
-ASSUME LET accepted BE [];
-ASSUME completed EQUALS false;
+CONSIDER CONST threshold IS 10;
+CONSIDER VAR attempts IS EQUAL 0;
+CONSIDER LET accepted BE [];
+CONSIDER completed EQUALS false;
 ```
 
 ```javascript
@@ -189,7 +189,7 @@ let accepted = [];
 let completed = false;
 ```
 
-Listing 1. Explicit declarations make binding intent visible while retaining conventional JavaScript declarations as an alternative ([DEAL.JS documentation](https://github.com/DEAL-X/DEAL-JS) [6]). The keyword `ASSUME` denotes a binding construction here; it is not a probabilistic assertion or a formal proof assumption.
+Listing 1. Explicit declarations make binding intent visible while retaining conventional JavaScript declarations as an alternative ([DEAL.JS documentation](https://github.com/DEAL-X/DEAL-JS) [6]). The keyword `CONSIDER` denotes a binding construction here; it is not a probabilistic assertion or a formal proof assumption.
 
 Hybrid source is an important adoption mechanism. A researcher can use a domain command for a recurrent operation while leaving a specialized mathematical expression or object transformation in JavaScript. The objective is not to restate every operator in prose, but to place an appropriate abstraction boundary between research decisions and implementation details.
 
@@ -203,7 +203,7 @@ COMMAND cleanTitle(value = "") {
         .replace(/\s+/gu, " ").trim();
 }
 
-ASSUME CONST title IS cleanTitle("  Alpha   study ");
+CONSIDER CONST title IS cleanTitle("  Alpha   study ");
 ```
 
 Listing 2. An author-defined command exposing a clearly named preprocessing operation. The example's contract is Unicode NFKC normalization, whitespace collapse, and trimming; the name alone is not the specification.
@@ -350,14 +350,14 @@ COMMAND cleanRecords(rows = [], source = "", time = "") {
     return normalizeRecords(rows, source, time);
 }
 
-ASSUME CONST sourceURL IS "https://example.org/catalog";
-ASSUME CONST destination IS "results/catalog.jsonl";
+CONSIDER CONST sourceURL IS "https://example.org/catalog";
+CONSIDER CONST destination IS "results/catalog.jsonl";
 
 LOAD sourceURL,
 THEN BEGIN
-    ASSUME CONST capturedAt IS new Date().toISOString();
-    ASSUME CONST rawRows IS extractRows(DOCUMENT, sourceURL);
-    ASSUME CONST report IS cleanRecords(rawRows, sourceURL, capturedAt);
+    CONSIDER CONST capturedAt IS new Date().toISOString();
+    CONSIDER CONST rawRows IS extractRows(DOCUMENT, sourceURL);
+    CONSIDER CONST report IS cleanRecords(rawRows, sourceURL, capturedAt);
     local.save(toJSONL(report.accepted), destination);
     local.save(JSON.stringify(report.rejected), "results/rejected.json");
 END;
@@ -409,7 +409,7 @@ Listing 5 compares a common task: output the elements of a three-value collectio
 
 ```text
 // DEAL.JS
-ASSUME CONST values IS [1, 2, 3];
+CONSIDER CONST values IS [1, 2, 3];
 FOR EACH value OF values, BEGIN
     console.log(value);
 END;

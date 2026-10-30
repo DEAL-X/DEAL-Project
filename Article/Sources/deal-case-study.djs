@@ -10,14 +10,14 @@ COMMAND cleanRecords(rows = [], source = "", time = "") {
     return normalizeRecords(rows, source, time);
 }
 
-ASSUME CONST sourceURL IS "https://example.org/catalog";
-ASSUME CONST destination IS "results/catalog.jsonl";
+CONSIDER CONST sourceURL IS "https://example.org/catalog";
+CONSIDER CONST destination IS "results/catalog.jsonl";
 
 LOAD sourceURL,
 THEN BEGIN
-    ASSUME CONST capturedAt IS new Date().toISOString();
-    ASSUME CONST rawRows IS extractRows(DOCUMENT, sourceURL);
-    ASSUME CONST report IS cleanRecords(rawRows, sourceURL, capturedAt);
+    CONSIDER CONST capturedAt IS new Date().toISOString();
+    CONSIDER CONST rawRows IS extractRows(DOCUMENT, sourceURL);
+    CONSIDER CONST report IS cleanRecords(rawRows, sourceURL, capturedAt);
     local.save(toJSONL(report.accepted), destination);
     local.save(JSON.stringify(report.rejected), "results/rejected.json");
 END;
