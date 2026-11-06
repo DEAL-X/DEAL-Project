@@ -5,8 +5,8 @@ const assert = require("node:assert/strict");
 const path = require("node:path");
 const { normalizeRecords, toJSONL, extractRows } = require("./deal-case-helpers.js");
 const root = path.resolve(process.argv[2] || "deal-js-review");
-const { ChainedDocument } = require(path.join(root, "Resource/node/ChainDoc/ChainedDocument.js"));
-const { MemoryConnector } = require(path.join(root, "Resource/node/ChainDoc/Connector/ConnectorBase.js"));
+const { ChainedDocument } = require(path.join(root, "node/ChainDoc/ChainedDocument.js"));
+const { MemoryConnector } = require(path.join(root, "node/ChainDoc/Connector/ConnectorBase.js"));
 const fixture = [
   { id: " p1 ", title: "  Alpha   study ", main_price: "100", discount: "0.10", quantity: "2" },
   { id: "p1", title: "Duplicate", main_price: "100", discount: "0.10", quantity: "2" },

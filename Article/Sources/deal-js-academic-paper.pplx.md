@@ -249,7 +249,7 @@ The implementation maintains command dictionaries and reserve mappings, and `USE
 
 Compilation and execution remain separate responsibilities. A ClearScript V8 host provides one execution environment, exposing the engine and selected host facilities; the execution-stage interface also permits alternative host implementations ([execution environment](https://github.com/DEAL-X/Environment) [35]; [Engine framework](https://github.com/DEAL-X/Engine) [32]). Reusing generated JavaScript therefore requires compatible host APIs and dependencies, whether the deployment uses a browser, Node.js, or an embedded runtime.
 
-The local-resource module exposes `file`, `folder`, `save`, `append`, `prepend`, `delete`, and `exists` operations through a resource provider ([local-resource interface](https://github.com/DEAL-X/DEAL-JS/blob/d76dcae3bf157e3969be0bd1f98ed2522defc2b9/Resource/deal/data/local.djs) [36]). Its `local.save(object, path)` operation delegates to the host's `SetFileContents(path, object)` interface ([local-resource interface](https://github.com/DEAL-X/DEAL-JS/blob/d76dcae3bf157e3969be0bd1f98ed2522defc2b9/Resource/deal/data/local.djs) [36]). Making the argument contract explicit keeps the direction of data flow visible across the language–host boundary.
+The local-resource module exposes `file`, `folder`, `save`, `append`, `prepend`, `delete`, and `exists` operations through a resource provider ([local-resource interface](https://github.com/DEAL-X/DEAL-JS/blob/d76dcae3bf157e3969be0bd1f98ed2522defc2b9/deal/data/local.djs) [36]). Its `local.save(object, path)` operation delegates to the host's `SetFileContents(path, object)` interface ([local-resource interface](https://github.com/DEAL-X/DEAL-JS/blob/d76dcae3bf157e3969be0bd1f98ed2522defc2b9/deal/data/local.djs) [36]). Making the argument contract explicit keeps the direction of data flow visible across the language–host boundary.
 
 Module resolution maps an extensionless name to `.deal`, `.djs`, or `.js` resources; directory-based modules may use an index or traverse their entries ([module-resolution implementation](https://github.com/DEAL-X/DEAL-JS/blob/d76dcae3bf157e3969be0bd1f98ed2522defc2b9/DEAL.JS/Tokenizer.cs) [33]). A resource not already registered is compiled and executed before successful dependency inclusion is recorded ([dependency interface](https://github.com/DEAL-X/Engine/blob/8800695b1bbe6274f71f581473943ff7943d5036/Engine/Engine.cs) [34]). Figure 3 illustrates the successful inclusion paths and the distinction between first use and reuse.
 
@@ -338,7 +338,7 @@ An API-first variant should convert the response into the same plain-record sche
 
 ### Preprocessing, processing, and persistence
 
-Listing 4 composes the single-page workflow. Domain-specific functions extract records, apply the data contract, and serialize accepted output; `cleanRecords` wraps normalization in a reusable DEAL command. Persistence uses the `local` resource interface, keeping storage effects explicit at the orchestration level ([local-resource interface](https://github.com/DEAL-X/DEAL-JS/blob/d76dcae3bf157e3969be0bd1f98ed2522defc2b9/Resource/deal/data/local.djs) [36]).
+Listing 4 composes the single-page workflow. Domain-specific functions extract records, apply the data contract, and serialize accepted output; `cleanRecords` wraps normalization in a reusable DEAL command. Persistence uses the `local` resource interface, keeping storage effects explicit at the orchestration level ([local-resource interface](https://github.com/DEAL-X/DEAL-JS/blob/d76dcae3bf157e3969be0bd1f98ed2522defc2b9/deal/data/local.djs) [36]).
 
 ```text
 USE deal;
@@ -786,7 +786,7 @@ Perplexity Computer (GPT 6.1 Sol) assisted literature discovery, manuscript draf
 
 [35] DEAL-X (n.d.). [DEAL Environment: JavaScript execution host](https://github.com/DEAL-X/Environment). Software. Version 9ef64b9ae94e1017273f9780a4466973b4d5747d; accessed 19 October 2026. Available at: <https://github.com/DEAL-X/Environment>.
 
-[36] DEAL-X (n.d.). [DEAL.JS: Local resource commands](https://github.com/DEAL-X/DEAL-JS/blob/d76dcae3bf157e3969be0bd1f98ed2522defc2b9/Resource/deal/data/local.djs). Software. local.djs, commit d76dcae3bf157e3969be0bd1f98ed2522defc2b9; accessed 19 October 2026. Available at: <https://github.com/DEAL-X/DEAL-JS/blob/d76dcae3bf157e3969be0bd1f98ed2522defc2b9/Resource/deal/data/local.djs>.
+[36] DEAL-X (n.d.). [DEAL.JS: Local resource commands](https://github.com/DEAL-X/DEAL-JS/blob/d76dcae3bf157e3969be0bd1f98ed2522defc2b9/deal/data/local.djs). Software. local.djs, commit d76dcae3bf157e3969be0bd1f98ed2522defc2b9; accessed 19 October 2026. Available at: <https://github.com/DEAL-X/DEAL-JS/blob/d76dcae3bf157e3969be0bd1f98ed2522defc2b9/deal/data/local.djs>.
 
 [37] MDN contributors (n.d.). [JavaScript guide: Using promises](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_promises). Online technical documentation. Technical documentation; accessed 19 October 2026. Available at: <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_promises>.
 
