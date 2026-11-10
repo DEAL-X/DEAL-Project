@@ -59,7 +59,7 @@ In DEAL:
         * All DEAL or third-party structures, such as BEGIN, USE, RESERVE, etc.
         * All DEAL or third-party commands, such as APPEND, COLLECT, POST, etc.
         * All DEAL or third-party reserveds, such as FROM, AND, WITH, etc.
-        * All DEAL or third-party handlers, such as BROWSER, WINDOW, LOAD, etc.
+        * All DEAL or third-party handlers, such as BROWSER, WINDOW, load, etc.
             * Multiple of the most important interface variables, such as DOCUMENT, CONSOLE, SCREEN, etc.
             * Multiple of the most important interface functions, such as ALERT, CONFIRM, PROMPT, etc.
     * Case-sensitive:

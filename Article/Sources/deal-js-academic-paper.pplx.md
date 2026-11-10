@@ -320,13 +320,13 @@ Figure 4. Research-data workflow expressed through DEAL orchestration and reusab
 
 ### Acquisition and extraction
 
-The scraper vocabulary includes `FETCH` for request/response interaction, `LOAD` for loading a page into the active context, selectors such as `ALL`, and contextual identifiers including `DOCUMENT`, `RESPONSE`, `LOADED`, and `FETCHED` ([DEAL.JS documentation](https://github.com/DEAL-X/DEAL-JS) [6]). Listing 3 expresses retrieval, selection, and output in one sequence. Its `sources` and `destination` parameters identify the acquisition targets and output location.
+The scraper vocabulary includes `fetch` for request/response interaction, `load` for loading a page into the active context, selectors such as `ALL`, and contextual identifiers including `DOCUMENT`, `RESPONSE`, `LOADED`, and `FETCHED` ([DEAL.JS documentation](https://github.com/DEAL-X/DEAL-JS) [6]). Listing 3 expresses retrieval, selection, and output in one sequence. Its `sources` and `destination` parameters identify the acquisition targets and output location.
 
 ```text
 USE deal;
 USE scraper;
 FOR EACH url OF sources,
-    LOAD url,
+    load url,
     THEN APPEND ALL "h3.title", TO destination;
 ```
 
@@ -353,7 +353,7 @@ COMMAND cleanRecords(rows = [], source = "", time = "") {
 CONSIDER CONST sourceURL IS "https://example.org/catalog";
 CONSIDER CONST destination IS "results/catalog.jsonl";
 
-LOAD sourceURL,
+load sourceURL,
 THEN BEGIN
     CONSIDER CONST capturedAt IS new Date().toISOString();
     CONSIDER CONST rawRows IS extractRows(DOCUMENT, sourceURL);
@@ -470,7 +470,7 @@ titles := page.Elem("H3");
 
 ```text
 // DEAL.JS orchestration idiom
-LOAD "https://example.org/catalog",
+load "https://example.org/catalog",
 THEN APPEND ALL "h3", TO destination;
 ```
 

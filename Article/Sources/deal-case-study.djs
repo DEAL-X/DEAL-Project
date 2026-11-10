@@ -13,7 +13,7 @@ COMMAND cleanRecords(rows = [], source = "", time = "") {
 CONSIDER CONST sourceURL IS "https://example.org/catalog";
 CONSIDER CONST destination IS "results/catalog.jsonl";
 
-LOAD sourceURL,
+load sourceURL,
 THEN BEGIN
     CONSIDER CONST capturedAt IS new Date().toISOString();
     CONSIDER CONST rawRows IS extractRows(DOCUMENT, sourceURL);
